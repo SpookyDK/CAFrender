@@ -1,11 +1,16 @@
-cmake_minimum_required(VERSION 3.10)
-project(cuda_brightness LANGUAGES CXX CUDA)
+cmake_minimum_required(VERSION 3.18)
 
-find_package(OpenCV REQUIRED)
+project(CAFrender LANGUAGES CXX CUDA)
 
-add_executable(img img.cu)
-target_link_libraries(img PRIVATE ${OpenCV_LIBS})
-set_target_properties(img PROPERTIES
-    CUDA_SEPARABLE_COMPILATION ON
-    CXX_STANDARD 14
-)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_CUDA_STANDARD 17)
+set(CMAKE_CUDA_STANDARD_REQUIRED ON)
+set(CMAKE_CUDA_ARCHITECTURES 61)
+include_directories(include)
+
+file(GLOB_RECURSE CPP_SOURCES src/*.cpp)
+file(GLOB_RECURSE CUDA_SOURCES src/*.cu)
+
+add_executable(${PROJECT_NAME} ${CPP_SOURCES} ${CUDA_SOURCES})

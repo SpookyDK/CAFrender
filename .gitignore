@@ -1,4 +1,6 @@
 CMakeFiles/
-cache/
+Makefile
+.cache/
 *.cmake
-CMakeCache
+CMakeCache.txt
+compile_commands.json
